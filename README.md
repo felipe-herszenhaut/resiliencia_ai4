@@ -10,8 +10,3 @@ Este projeto implementa um chatbot especializado para auxiliar gestores público
 - **prompt_0.txt**: Arquivo contendo o prompt do chatbot.
 - **Base de Riscos do Adapta Brasil.xlsx**: Base de dados climáticos.
 
-## 🚀 Como Executar
-1. Clone o repositório:
-   ```bash
-   git clone https://https://github.com/felipe-herszenhaut/resiliencIA.git
-   cd resiliencIA
