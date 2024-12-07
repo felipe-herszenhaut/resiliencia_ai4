@@ -1,0 +1,5 @@
+openai==0.27.8
+numpy==1.23.5
+pandas==1.5.3
+faiss-cpu==1.7.4
+python-dotenv==1.0.0

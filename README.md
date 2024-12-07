@@ -78,3 +78,7 @@ A primeira versão do prompt tinha apenas 600 palavras, sem referências claras 
    ```bash
    git clone https://github.com/seu-usuario/resiliencIA.git
    cd resiliencIA
+   
+2. Isntale as dependências:
+  ```bash
+    pip install -r requirements.txt
