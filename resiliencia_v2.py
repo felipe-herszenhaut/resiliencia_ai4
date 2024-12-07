@@ -15,7 +15,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Absolute path to the prompt file
-prompt_path = os.path.join(script_dir, "prompt_0.txt")
+prompt_path = os.path.join(script_dir, "py_prompt.txt")
 
 # Function to load the prompt from a file
 def load_prompt(file_path):
