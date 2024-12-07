@@ -1,59 +1,108 @@
 import os
+import openai
 import pandas as pd
-from langchain_community.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, AIMessage
+import numpy as np
+import faiss
+from dotenv import load_dotenv
 
-# Diretório do script
+# Load environment variables
+load_dotenv()
+
+# Set OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Caminho absoluto para o arquivo de prompt
+# Absolute path to the prompt file
 prompt_path = os.path.join(script_dir, "prompt_0.txt")
 
-# Função para carregar o Prompt do Arquivo
+# Function to load the prompt from a file
 def load_prompt(file_path):
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Arquivo de prompt não encontrado: {file_path}")
-    print("Carregando prompt:", file_path)
+        raise FileNotFoundError(f"Prompt file not found: {file_path}")
+    print("Loading prompt:", file_path)
     with open(file_path, "r", encoding="utf-8") as file:
         return file.read()
 
-# Carregar o Prompt Estruturado
+# Load the structured prompt
 structured_prompt = load_prompt(prompt_path)
 
-# Modelo de linguagem
-chat_model = ChatOpenAI(
-    model="gpt-4",
-    temperature=0,
-    openai_api_key="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"
-)
+# Absolute path to the CSV file
+adaptabrasil_filepath = os.path.join(script_dir, "Base de Riscos do Adapta Brasil.csv")
 
-# Caminho absoluto para o arquivo Excel
-adaptabrasil_filepath = os.path.join(script_dir, "Base de Riscos do Adapta Brasil.xlsx")
+# Prepare for RAG if data is loaded
+if os.path.exists(adaptabrasil_filepath):
+    print("Processing database")
 
-# Função para carregar dados do AdaptaBrasil
-def load_adaptabrasil_data(filepath):
-    """Carrega os dados climáticos do AdaptaBrasil"""
-    if not os.path.exists(filepath):
-        raise FileNotFoundError(f"Arquivo não encontrado: {filepath}")
-    print("Carregando arquivo Excel:", filepath)
-    df = pd.read_excel(filepath)
-    return df
+    # Load data from CSV
+    df = pd.read_csv(adaptabrasil_filepath, encoding='utf-8')
 
-# Verificação de existência do arquivo Excel
-if not os.path.exists(adaptabrasil_filepath):
-    print(f"Erro: Arquivo Excel não encontrado no caminho: {adaptabrasil_filepath}")
-    adaptabrasil_data = None
+    # Combine relevant content into a list of texts
+    documents = df.apply(lambda row: ' '.join(row.astype(str)), axis=1).tolist()
+
+    # Get embeddings for each document
+    print("Obtaining document embeddings")
+    embeddings = []
+    batch_size = 100  # Adjust based on your API rate limits
+    for i in range(0, len(documents), batch_size):
+        batch = documents[i:i+batch_size]
+        response = openai.Embedding.create(
+            input=batch,
+            engine='text-embedding-ada-002'
+        )
+        batch_embeddings = [data["embedding"] for data in response["data"]]
+        embeddings.extend(batch_embeddings)
+
+    embeddings = np.array(embeddings).astype('float32')
+
+    # Build the FAISS index
+    print("Building FAISS index")
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(embeddings)
+    print(f"Total vectors indexed: {index.ntotal}")
+
+    print("Database processed")
 else:
-    adaptabrasil_data = load_adaptabrasil_data(adaptabrasil_filepath)
+    index = None
+    documents = None
+    embeddings = None
 
-# Função para rodar o chatbot
+# Function to retrieve documents based on a query
+def retrieve_documents(query, top_k=5):
+    if index is None:
+        return []
+
+    # Get embedding for the query
+    response = openai.Embedding.create(
+        input=[query],
+        engine='text-embedding-ada-002'
+    )
+    query_embedding = np.array(response['data'][0]['embedding']).astype('float32')
+
+    # Search for the most similar documents
+    D, I = index.search(np.array([query_embedding]), top_k)
+    retrieved_texts = [documents[i] for i in I[0]]
+    return retrieved_texts
+
+# Function to run the chatbot with RAG
 def run_resiliencIA():
     print("Iniciando ResiliêncIA. Digite 'sair' para encerrar a conversa.")
-    print("ResiliêncIA: Olá! Sou ResiliêncIA, seu assistente para criar um Plano Local de Ação Climática. Para começar, informe o nome do município e estado.")
 
     history = [
-        AIMessage(content="Olá! Sou ResiliêncIA, seu assistente para criar um Plano Local de Ação Climática. Para começar, informe o nome do município e estado.")
+        {"role": "system", "content": structured_prompt},
+        {"role": "user", "content": ""}
     ]
+    # Initial assistant message
+    response = openai.ChatCompletion.create(
+        model="gpt-4o",
+        messages=history,
+        temperature=0,
+    )
+    assistant_reply = response['choices'][0]['message']['content']
+    history.append({"role": "assistant", "content": assistant_reply})
+    print(f"ResiliêncIA: {assistant_reply}")
 
     while True:
         user_input = input("Você: ")
@@ -61,11 +110,27 @@ def run_resiliencIA():
             print("ResiliêncIA: Obrigado por usar a ferramenta. Até logo!")
             break
 
-        history.append(HumanMessage(content=user_input))
-        response = chat_model.invoke(history)
-        history.append(AIMessage(content=response.content))
-        print(f"ResiliêncIA: {response.content}")
+        history.append({"role": "user", "content": user_input})
+
+        # Retrieve relevant documents if necessary
+        retrieved_texts = retrieve_documents(user_input)
+        if retrieved_texts:
+            context = "\n".join(retrieved_texts[:3])  # Use top 3 documents
+            # Add context as a system message
+            context_message = {"role": "system", "content": f"Informações adicionais para auxiliar na resposta:\n{context}"}
+            messages = history + [context_message]
+        else:
+            messages = history
+
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=messages,
+            temperature=0,
+        )
+        assistant_reply = response['choices'][0]['message']['content']
+        history.append({"role": "assistant", "content": assistant_reply})
+
+        print(f"ResiliêncIA: {assistant_reply}")
 
 if __name__ == "__main__":
-    if adaptabrasil_data is not None:
-        run_resiliencIA()
+    run_resiliencIA()
