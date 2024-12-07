@@ -45,7 +45,7 @@ O diferencial do ResiliêncIA está no **prompt** desenvolvido com técnicas ava
 
 ### Iteração e Evolução do Prompt
 
-A primeira versão do prompt tinha apenas 600 palavras, sem referências claras ou estrutura definida. Após um extenso processo de iteração e refinamento, chegamos a um **prompt de 3000 palavras**, dividido em **quatro módulos interconectados que se retroalimentam**. Cada etapa captura informações do usuário, transforma e detalha os dados, até culminar na versão final do PLAC, alinhada às necessidades locais.
+A primeira versão do prompt tinha apenas 600 palavras, sem referências claras ou estrutura definida. Após um extenso processo de iteração e refinamento, chegamos a um **prompt de 3000 palavras**, dividido em **quatro etapas interconectados que se retroalimentam**. Cada etapa captura informações do usuário, transforma e detalha os dados, até culminar na versão final do PLAC, alinhada às necessidades locais.
 
 ---
 
