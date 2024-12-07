@@ -14,9 +14,9 @@ ResiliêncIA é uma ferramenta baseada em inteligência artificial que utiliza *
 
 ## Sobre o Projeto
 
-ResiliêncIA é um **MVP** criado por professores de escolas públicas que estão expandindo suas carreiras para a área de tecnologia. Este projeto começou a ser desenvolvido dentro do **Playlab.ia**, um espaço foca em IA Generativa para educação básica, foi testado e refinado com o **Create GPT**, e também criado a primeira versão em código aberto disponibilizado no **langchan_resliencia_v2.py**.
+ResiliêncIA é um **MVP** criado por professores de escolas públicas que estão expandindo suas carreiras para a área de tecnologia. Este projeto começou a ser desenvolvido dentro do **Playlab.ia**, um espaço foca em IA Generativa para educação básica, foi testado e refinado com o **Create GPT**, e também criado a primeira versão em código aberto disponibilizado no **resliencia_v2.py**.
 
-Como parte desse Read.me, além de disponibilizar as funcionalidades, requisitos e instalação do **langchan_resliencia_v2.py**, ensinamos a configurar e utilizar a ferramenta tanto no Playlab.ia quanto no Create GPT, promovendo o aprendizado prático e incentivando o uso de tecnologia por outros  profissionais.
+Como parte desse Read.me, além de disponibilizar as funcionalidades, requisitos e instalação do **resliencia_v2.py**, ensinamos a configurar e utilizar a ferramenta tanto no Playlab.ia quanto no Create GPT, promovendo o aprendizado prático e incentivando o uso de tecnologia por outros  profissionais.
 
 ---
 
@@ -49,7 +49,7 @@ A primeira versão do prompt tinha apenas 600 palavras, sem referências claras 
 
 ---
 
-## Funcionalidades **langchan_resliencia_v2.py**
+## Funcionalidades **resliencia_v2.py**
 
 - **Integração com OpenAI API**: Utiliza o modelo `text-embedding-ada-002` para geração de embeddings e `gpt-4o` para conversas.
 - **Processamento de Base de Dados**: Analisa e transforma um arquivo CSV (`Base de Riscos do Adapta Brasil.csv`) em embeddings para busca.
@@ -72,13 +72,13 @@ A primeira versão do prompt tinha apenas 600 palavras, sem referências claras 
 
 ---
 
-## Instalação do **langchan_resliencia_v2.py**
+## Instalação do **resliencia_v2.py**
 
 1. Clone este repositório:
    ```bash
    git clone https://github.com/seu-usuario/resiliencIA.git
    cd resiliencIA
-   
+
 2. Isntale as dependências:
   ```bash
     pip install -r requirements.txt
