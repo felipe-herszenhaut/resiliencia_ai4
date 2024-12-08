@@ -101,11 +101,11 @@ Essas etapas estruturadas ajudam os gestores a elaborar um Plano Local de Ação
   ```bash
     pip install -r requirements.txt
 
+---
 ## Configuração do Prompt e Referências no Playlab.ia e Create GPT
 
 Para facilitar o uso do ResiliêncIA, também ensinamos como configurar o **prompt** e subir as referências em duas plataformas: **Playlab.ia** e **Create GPT**. Estas ferramentas permitem explorar e experimentar com inteligência artificial de forma interativa.
 
----
 
 ### 1. Configurando no Playlab.ia (você pode acessar ele já configurado aqui https://www.playlab.ai/project/cm4d4j9yd0k3aw1b628kyrrci/cm4fpvuic140zw1b6g4nwnd0i)
 
