@@ -1,6 +1,6 @@
 ## Problem Statement
 
-Gestores municipais Brasileiros têm até dezembro de 2025 para elaborar seus **Planos Locais de Ação Climática (PLACs)**, conforme a Lei 14.904/24. Este é um desafio complexo, envolvendo análises detalhadas, consultas a dados confiáveis e a participação de diversos stakeholders. ResiliêncIA foi criada para ser uma ferramenta de apoio nesse processo, simplificando etapas e fornecendo informações relevantes de forma simples para gestores.
+Gestores municipais Brasileiros têm até dezembro de 2025 para elaborar seus **Planos Locais de Ação Climática (PLACs)**, conforme a Lei 14.904/24. Este é um desafio complexo, envolvendo análises detalhadas, consultas a dados confiáveis e a participação de diversos stakeholders.
 
 # ResiliêncIA
 
@@ -14,9 +14,9 @@ ResiliêncIA é uma ferramenta baseada em inteligência artificial que utiliza *
 
 ## Sobre o Projeto
 
-ResiliêncIA é um **MVP** criado por professores de escolas públicas que estão expandindo suas carreiras para a área de tecnologia. Este projeto começou a ser desenvolvido dentro do **Playlab.ia**, um espaço foca em IA Generativa para educação básica, foi testado e refinado com o **Create GPT**, e também criado a primeira versão em código aberto disponibilizado no **resliencia_v2.py**.
+ResiliêncIA é um **MVP** criado por professores de escolas públicas que estão expandindo suas carreiras com possibilidades que srugiram com IA Generativa. O projeto começou a ser desenvolvido dentro do **Playlab.ia**, um espaço foca em IA Generativa para educação básica, foi testado e refinado com o **Create GPT**, e também criado a primeira versão em código aberto disponibilizado no **resliencia_v2.py**.
 
-Como parte desse Read.me, além de disponibilizar as funcionalidades, requisitos e instalação do **resliencia_v2.py**, ensinamos a configurar e utilizar a ferramenta tanto no Playlab.ia quanto no Create GPT, promovendo o aprendizado prático e incentivando o uso de tecnologia por outros  profissionais.
+Como parte desse Read.me, além de disponibilizar as funcionalidades, requisitos e instalação do **resliencia_v2.py**, ensinamos a configurar e utilizar a ferramenta tanto no Playlab.ia quanto no Create GPT, incentivando o uso por outros  profissionais.
 
 ---
 
@@ -46,6 +46,24 @@ O diferencial do ResiliêncIA está no **prompt** desenvolvido com técnicas ava
 ### Iteração e Evolução do Prompt
 
 A primeira versão do prompt tinha apenas 600 palavras, sem referências claras ou estrutura definida. Após um extenso processo de iteração e refinamento, chegamos a um **prompt de 3000 palavras**, dividido em **quatro etapas interconectados que se retroalimentam**. Cada etapa captura informações do usuário, transforma e detalha os dados, até culminar na versão final do PLAC, alinhada às necessidades locais.
+
+### As 4 Etapas do Processo com o ResiliêncIA
+
+O ResiliêncIA guia os gestores municipais em uma jornada formativa em quatro etapas:
+
+1. **Definição de Propósito e Mapeamento de Atores**: 
+   - Nesta etapa inicial, o assistente apoia a definição do propósito central do plano, objetivos estratégicos e o mapeamento de atores-chave que serão envolvidos no processo.
+
+2. **Investigação da Vulnerabilidade do Território**:
+   - O chatbot ajuda os gestores a identificar e compreender as vulnerabilidades climáticas do município, analisando dados locais e mapeando riscos prioritários.
+
+3. **Definição de Prioridades e Ações de Adaptação**:
+   - Nesta etapa, o ResiliêncIA auxilia na tomada de decisões sobre prioridades e na definição de ações estratégicas de adaptação que respondam às vulnerabilidades identificadas.
+
+4. **Planejamento da Implementação e Monitoramento**:
+   - O assistente apoia o planejamento estratégico para implementar as ações previstas e estabelece diretrizes para monitoramento e avaliação contínuos do plano.
+
+Essas etapas estruturadas ajudam os gestores a elaborar um Plano Local de Ação Climática de forma clara, eficiente e colaborativa.
 
 ---
 
@@ -82,3 +100,64 @@ A primeira versão do prompt tinha apenas 600 palavras, sem referências claras 
 2. Isntale as dependências:
   ```bash
     pip install -r requirements.txt
+
+## Configuração do Prompt e Referências no Playlab.ia e Create GPT
+
+Para facilitar o uso do ResiliêncIA, também ensinamos como configurar o **prompt** e subir as referências em duas plataformas: **Playlab.ia** e **Create GPT**. Estas ferramentas permitem explorar e experimentar com inteligência artificial de forma interativa.
+
+---
+
+### 1. Configurando no Playlab.ia (você pode acessar ele já configurado aqui https://www.playlab.ai/project/cm4d4j9yd0k3aw1b628kyrrci/cm4fpvuic140zw1b6g4nwnd0i)
+
+#### Subindo o Prompt
+1. Acesse o Playlab.ia: [link para a plataforma Playlab.ia](https://playlab.ia).
+2. Crie um novo projeto ou abra um projeto existente.
+3. Na seção **Prompt Engineering**:
+   - Copie o conteúdo do arquivo `playlab_prompt.txt`.
+   - Cole no campo de texto de prompt principal (Build).
+   - Ajuste, se necessário, para refletir outras especificidades.
+
+#### Subindo as Referências
+1. Vá para a aba **References**.
+2. Clique em **Upload**.
+3. Faça upload dos arquivos `Base de Riscos do Adapta Brasil.csv` e `base_populacao_municipio_2024_ibge_pop.csv`.
+4. Faça upload do arquivo `ref_plac.pdf`.
+4. Certifique-se de hablitar os arquvios depois do upload.
+
+#### Executando o Chatbot
+1. Na aba **Chat**, insira perguntas ou interações no campo de texto.
+2. Teste o comportamento do bot e verifique se as informações do prompt e do banco de dados estão sendo utilizadas corretamente.
+
+---
+
+### 2. Configurando no Create GPT
+
+#### Subindo o Prompt
+1. Acesse o Create GPT: [link para a plataforma Create GPT](https://create.openai.com).
+2. Crie um novo workspace ou use um já existente.
+3. Na aba **Prompt Settings**:
+   - Copie o conteúdo do arquivo `playlab_prompt.txt`.
+   - Cole no campo de configuração do prompt.
+   - Se necessário, adicione instruções adicionais para personalizar o comportamento.
+
+#### Subindo as Referências
+1. Acesse a seção **Datasets**.
+2. Clique em **Upload File** e carregue o arquivo `Base de Riscos do Adapta Brasil.csv`.
+3. Configure os dados para que possam ser usados como parte do contexto:
+   - Defina as colunas de interesse.
+   - Habilite a opção de "Adicionar contexto a respostas" (se disponível).
+4. Teste a integração fazendo consultas relacionadas ao banco de dados.
+
+#### Executando o Chatbot
+1. Navegue para a aba de interações (geralmente chamada de **Chat** ou **Test Interface**).
+2. Envie perguntas para o modelo e observe como ele utiliza as referências e o prompt para gerar respostas.
+
+---
+
+### Dicas para Ajustes
+
+- **Refine o Prompt:** Tanto no Playlab quanto no Create GPT, você pode ajustar o prompt para refletir o contexto do usuário final. Por exemplo, inclua mais detalhes sobre o município ou objetivos específicos do gestor.
+- **Organize as Referências:** Certifique-se de que as colunas no arquivo CSV são bem compreendidas pela plataforma. Use nomes claros e ordene os dados de forma lógica.
+- **Teste Iterativamente:** Teste perguntas típicas que os gestores municipais podem fazer e ajuste o prompt ou a configuração do banco de dados conforme necessário.
+
+---
