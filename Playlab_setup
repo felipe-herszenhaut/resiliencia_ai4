@@ -1,0 +1,58 @@
+## Configuração do Prompt e Referências no Playlab.ia e Create GPT
+
+Para facilitar o uso do ResiliêncIA, também ensinamos como configurar o **prompt** e subir as referências em duas plataformas: **Playlab.ia** e **Create GPT**. Estas ferramentas permitem explorar e experimentar com inteligência artificial de forma interativa.
+
+
+### 1. Configurando no Playlab.ia (você pode acessar ele já configurado aqui 
+https://www.playlab.ai/project/cm4d4j9yd0k3aw1b628kyrrci/cm4fpvuic140zw1b6g4nwnd0i
+
+#### Subindo o Prompt
+1. Acesse o Playlab.ia: [link para a plataforma Playlab.ia](https://playlab.ia).
+2. Crie um novo projeto ou abra um projeto existente.
+3. Na seção **Prompt Engineering**:
+   - Copie o conteúdo do arquivo `playlab_prompt.txt`.
+   - Cole no campo de texto de prompt principal (Build).
+   - Ajuste, se necessário, para refletir outras especificidades.
+
+#### Subindo as Referências
+1. Vá para a aba **References**.
+2. Clique em **Upload**.
+3. Faça upload dos arquivos `Base de Riscos do Adapta Brasil.csv` e `base_populacao_municipio_2024_ibge_pop.csv`.
+4. Faça upload do arquivo `ref_plac.pdf`.
+4. Certifique-se de hablitar os arquvios depois do upload.
+
+#### Executando o Chatbot
+1. Na aba **Chat**, insira perguntas ou interações no campo de texto.
+2. Teste o comportamento do bot e verifique se as informações do prompt e do banco de dados estão sendo utilizadas corretamente.
+
+---
+
+### 2. Configurando no Create GPT
+
+#### Subindo o Prompt
+1. Acesse o Create GPT: [link para a plataforma Create GPT](https://create.openai.com).
+2. Crie um novo workspace ou use um já existente.
+3. Na aba **Prompt Settings**:
+   - Copie o conteúdo do arquivo `playlab_prompt.txt`.
+   - Cole no campo de configuração do prompt.
+   - Se necessário, adicione instruções adicionais para personalizar o comportamento.
+
+#### Subindo as Referências
+1. Acesse a seção **Datasets**.
+2. Clique em **Upload File** e carregue o arquivo `Base de Riscos do Adapta Brasil.csv`.
+3. Configure os dados para que possam ser usados como parte do contexto:
+   - Defina as colunas de interesse.
+   - Habilite a opção de "Adicionar contexto a respostas" (se disponível).
+4. Teste a integração fazendo consultas relacionadas ao banco de dados.
+
+#### Executando o Chatbot
+1. Navegue para a aba de interações (geralmente chamada de **Chat** ou **Test Interface**).
+2. Envie perguntas para o modelo e observe como ele utiliza as referências e o prompt para gerar respostas.
+
+---
+
+### Dicas para Ajustes
+
+- **Refine o Prompt:** Tanto no Playlab quanto no Create GPT, você pode ajustar o prompt para refletir o contexto do usuário final. Por exemplo, inclua mais detalhes sobre o município ou objetivos específicos do gestor.
+- **Organize as Referências:** Certifique-se de que as colunas no arquivo CSV são bem compreendidas pela plataforma. Use nomes claros e ordene os dados de forma lógica.
+- **Teste Iterativamente:** Teste perguntas típicas que os gestores municipais podem fazer e ajuste o prompt ou a configuração do banco de dados conforme necessário.
